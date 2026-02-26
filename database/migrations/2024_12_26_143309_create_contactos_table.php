@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('telefono')->nullable(); // Teléfono (opcional)
             $table->string('direccion')->nullable(); // Dirección (opcional)
             $table->text('notas')->nullable(); // Notas (opcional)
-            $table->unsignedBigInteger('entidad_id'); // Relación con entidades
-            $table->foreign('entidad_id')->references('id')->on('entidades')->onDelete('set null');
+            $table->foreignId('entidad_id')
+                ->nullable()
+                ->constrained('entidades')
+                ->nullOnDelete();
             $table->date('fecha_nacimiento')->nullable(); // Fecha de nacimiento (opcional)
             $table->unsignedBigInteger('creado_por')->nullable(); // Relación con usuarios (opcional)
             $table->timestamps(); // created_at y updated_at
