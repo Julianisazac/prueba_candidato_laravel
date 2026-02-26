@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::apiResource('entidades', EntidadController::class);
+Route::apiResource('entidades', EntidadController::class)->parameters([
+    'entidades' => 'entidad'
+]);
+Route::apiResource('contactos', ContactoController::class);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
